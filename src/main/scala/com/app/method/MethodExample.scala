@@ -11,6 +11,7 @@ object MethodExample extends App {
  println( scala.io.Source.stdin.getLines().take(5).map(_.toInt).sum)*/
 
 
+// Reccursion==
 
   def f(n:Int) :Unit ={println("Hello world"+n.toString); if(n>1)f(n-1)}
   f(3)
