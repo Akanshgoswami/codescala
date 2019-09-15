@@ -18,4 +18,12 @@ object MethodExample extends App {
 
   def d(n:Int) :Unit ={  if(n>1)d(n-1); println(n+"Hello world");}
   d(3)
+
+
+
+
+
+
+
+
 }
