@@ -1,13 +1,16 @@
 package com.app.dbda
 
+import org.apache.spark.sql.SaveMode
 import org.apache.spark.sql.expressions.Window
 
 object BusinessComputation extends App with Connection {
 
+
+/*
   val data = spark.read.format("csv")
              .options(Map("header"->"true","inferschema"-> "true"))
-             .load("file:///home/hduser/Documents/ds/SFFoodProgram/businesses_plus.csv")
-data.printSchema()
+             .load("file:///home/hduser/Documents/ds/SFFoodProgram/businesses_plus.csv")*/
+//data.printSchema()
 //  data.show(10,false)
 
   import spark.implicits._
@@ -23,7 +26,7 @@ var df = data.select(data.col("city") as ("bcity"),$"owner_city",$"business_id")
 var pvdf=  df.groupBy("bcity").pivot("owner_city").sum("business_id")
  pvdf.show(5)*/
 
-  val empDF = spark.createDataFrame(Seq(
+ /* val empDF = spark.createDataFrame(Seq(
     (7369, "SMITH", "CLERK", 7902, "17-Dec-80", 800, 20, 10),
     (7499, "ALLEN", "SALESMAN", 7698, "20-Feb-81", 1600, 300, 30),
     (7521, "WARD", "SALESMAN", 7698, "22-Feb-81", 1250, 500, 30),
@@ -53,10 +56,22 @@ empDF.show(10,false)
 //    .where($"rank"=== 1)
   .show(20,false)
 
+*/
 
 
 
+  val data = spark.read.format("csv")
+    .options(Map("header"->"true","inferschema"-> "true","sep"->",")).load("file:///home/hduser/Documents/data.csv")
 
+ data.show(10)
+
+  data.write.option("quote","\u0000").options(Map("header"->"true","sep"->",")).mode(SaveMode.Overwrite).csv("file:///home/hduser/Documents/data_inter.csv")
+
+  val data1 = spark.read.format("csv")
+    .options(Map("header"->"true","inferschema"-> "true","sep"->",")).load("file:///home/hduser/Documents/data_inter.csv")
+
+  data1.show(10)
+  data1.printSchema()
 
 
 

@@ -29,6 +29,9 @@ trait Connection {
 //      .enableHiveSupport()
       .getOrCreate()
 
+
+
+
 }
 
 
