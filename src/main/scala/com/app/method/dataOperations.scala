@@ -90,14 +90,14 @@ val monthGroups = data.groupBy(_ .month)
 
   println(monthGroups.size)
 
-val monthlyTemp = monthGroups.map(
+/*val monthlyTemp = monthGroups.map(
   {
     case (m,days) =>
-      m -> days.foldLeft(0,0) ((sum ,td) => sum + (td.tmax/days.length) )
+      m -> days.foldLeft(0,0) ((sum ,td) => sum+td.tmax/days.length)
   }
 
 
-)
+)*/
 
 source.close()
 
